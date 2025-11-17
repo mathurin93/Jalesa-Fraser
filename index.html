@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yummy! Artisan & Nut-Free Baking — Light Theme</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Inter:wght@100..900&display=swap"
+        rel="stylesheet">
+
+    <style>
+        /* White Theme variables */
+        :root {
+            --bg: #ffffff;
+            /* page background (white) */
+            --card: #f5f5f5;
+            /* card / panel background (light gray) */
+            --text: #1f1f1f;
+            /* main text (dark gray/black) */
+            --muted: #4b5563;
+            /* secondary text / borders (medium gray) */
+            --glass: rgba(0, 0, 0, 0.04);
+            /* subtle glassy overlay (transparent black) */
+        }
+
+        .font-serif {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .font-sans {
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Inter', sans-serif;
+        }
+
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(32px);
+            transition: all 1000ms ease-out;
+        }
+
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Header scrolled state (keeps it light and adds subtle border) */
+        .header-scrolled {
+            background-color: rgba(255, 255, 255, 0.95);
+            /* White background with opacity */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.06);
+            /* Dark shadow */
+            border-bottom: 1px solid var(--muted);
+        }
+
+        /* Utility classes adjustments for accessibility */
+        /* This button is now dark text/background on a light theme */
+        a.invert-btn {
+            background-color: var(--text);
+            color: var(--bg);
+        }
+
+        .card-border {
+            border-color: var(--muted) !important;
+        }
+    </style>
+</head>
+
+<body class="font-sans">
+
+    <header id="main-header" class="sticky top-0 z-50 p-4 transition-all duration-300 bg-transparent">
+        <div class="container mx-auto flex justify-between items-center" style="color: var(--text);">
+            <div>
+                <h1 class="text-3xl font-serif font-bold tracking-tight" style="color: var(--text);">Yummy!</h1>
+                <p class="text-xs font-light tracking-widest uppercase" style="color: var(--muted);">By Dion's Mummy</p>
+            </div>
+            <nav class="hidden md:flex space-x-8 font-medium">
+                <a href="#featured" class="hover:text-gray-900 transition duration-300"
+                    style="color: var(--muted);">Home</a>
+                <a href="#mission-vision-block" class="hover:text-gray-900 transition duration-300"
+                    style="color: var(--muted);">Our Story</a>
+                <a href="#offerings" class="hover:text-gray-900 transition duration-300"
+                    style="color: var(--muted);">Menu</a>
+                <a href="#gallery" class="hover:text-gray-900 transition duration-300"
+                    style="color: var(--muted);">Gallery</a>
+                <a href="#contact" class="hover:text-gray-900 transition duration-300"
+                    style="color: var(--muted);">Order Now</a>
+            </nav>
+            <button id="menu-toggle" class="md:hidden p-2 rounded-lg transition" aria-label="Toggle menu">
+                <svg id="menu-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="w-6 h-6" style="color: var(--text);">
+                    <line x1="4" x2="20" y1="12" y2="12"></line>
+                    <line x1="4" x2="20" y1="6" y2="6"></line>
+                    <line x1="4" x2="20" y1="18" y2="18"></line>
+                </svg>
+                <svg id="x-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="w-6 h-6 hidden" style="color: var(--text);">
+                    <path d="M18 6 6 18"></path>
+                    <path d="m6 6 12 12"></path>
+                </svg>
+            </button>
+        </div>
+        <div id="mobile-menu" class="md:hidden mt-4 space-y-2 text-center rounded-lg shadow-inner hidden"
+            style="background-color: var(--card);">
+            <a href="#featured" class="block py-3 font-medium hover:bg-black/10 rounded-md transition mobile-link"
+                style="color: var(--text);">Home</a>
+            <a href="#mission-vision-block"
+                class="block py-3 font-medium hover:bg-black/10 rounded-md transition mobile-link"
+                style="color: var(--text);">Our Story</a>
+            <a href="#offerings" class="block py-3 font-medium hover:bg-black/10 rounded-md transition mobile-link"
+                style="color: var(--text);">Menu</a>
+            <a href="#gallery" class="block py-3 font-medium hover:bg-black/10 rounded-md transition mobile-link"
+                style="color: var(--text);">Gallery</a>
+            <a href="#contact" class="block py-3 font-medium hover:bg-black/10 rounded-md transition mobile-link"
+                style="color: var(--text);">Order Now</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- FEATURED SECTION -->
+        <section id="featured"
+            class="relative h-[60vh] md:h-[85vh] lg:h-screen flex items-center justify-center overflow-hidden"
+            style="background-color: var(--bg); color: var(--text);">
+            <div class="absolute inset-0" style="
+                        background-image: url('Images/Hero3.jpg');
+                        background-size: cover;
+                        background-position: top center;
+                    ">
+                <!-- Darkened overlay remains for contrast on the hero image -->
+                <div class="absolute inset-0 bg-black opacity-60"></div>
+            </div>
+
+            <div class="container mx-auto px-4 relative z-10 text-center">
+                <p class="text-xl md:text-2xl font-serif italic block mb-4 text-white"
+                    style="text-shadow: 1px 1px 2px rgba(0,0,0,0.8);">
+                    The Secret Ingredient Is Always a Mother's Love
+                </p>
+                <h2 class="text-6xl sm:text-7xl md:text-8xl font-black font-serif leading-none tracking-tighter drop-shadow-lg text-white"
+                    style="text-shadow: 1px 1px 4px rgba(0,0,0,0.9);">
+                    Artisan & Nut-Free Baking
+                </h2>
+                <p class="text-lg md:text-xl font-medium max-w-4xl mx-auto mt-6 mb-8 text-white"
+                    style="text-shadow: 1px 1px 2px rgba(0,0,0,0.8);">
+                    Handcrafted delights for your family and friends in the Peel Region. We specialize in custom cakes,
+                    decadent
+                    cheesecakes, and safe, delicious treats for all celebrations.
+                </p>
+                <a href="#offerings"
+                    class="inline-flex items-center justify-center px-8 py-3 font-bold text-lg rounded-full shadow-xl transition transform hover:scale-[1.03] hover:shadow-2xl invert-btn"
+                    style="box-shadow: 0 8px 15px -3px rgba(0,0,0,0.2);">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="w-6 h-6 mr-2" style="color: var(--bg);">
+                        <path d="M21.2 11.2V7c0-2.8-2.2-5-5-5h-8c-2.8 0-5 2.2-5 5v4.2"></path>
+                        <path d="M2.5 13.5c-.8.8-1.5 2-1.5 3.5 0 2 1 4 4 4s4-2 4-4c0-1.5-.7-2.7-1.5-3.5"></path>
+                        <path d="M12 22c-3.3 0-6-2-6-4h12c0 2-2.7 4-6 4z"></path>
+                        <path d="M16 14.2c.8-.8 1.5-2 1.5-3.5 0-2-1-4-4-4s-4 2-4 4c0 1.5.7 2.7 1.5 3.5"></path>
+                    </svg>
+                    Explore Our Menu
+                </a>
+            </div>
+        </section>
+
+        <!-- MISSION/VISION -->
+        <section id="mission-vision-block" class="fade-in-section py-16 md:py-24"
+            style="background-color: var(--card);">
+            <div class="container mx-auto px-4">
+                <h3 class="text-5xl font-serif font-bold text-center mb-12" style="color: var(--text);">Our Artisan
+                    Journey</h3>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
+
+                    <div class="rounded-xl overflow-hidden shadow-2xl h-full">
+                        <img src="Images/Barker.jpg" alt="The Baker, Dion's Mummy" class="w-full h-full object-cover"
+                            onerror="this.onerror=null;this.src='https://placehold.co/1000x800/f5f5f5/1f1f1f?text=The+Baker'" />
+                    </div>
+
+                    <div class="space-y-8">
+
+                        <div class="p-8 rounded-xl border-t-4 shadow-xl h-full transition duration-300 hover:shadow-2xl"
+                            style="background-color: var(--bg); border-color: var(--muted);">
+                            <h4 class="text-3xl font-serif font-bold mb-3" style="color: var(--text);">
+                                From Our Kitchen to Your Table.
+                            </h4>
+                            <p style="color: var(--muted);" class="text-lg">
+                                Yummy! By Dion's Mummy started with a simple commitment: to create beautiful, delicious,
+                                and above all, safe baked goods. We source high-quality, fresh ingredients and pour
+                                passion into every stir, fold, and bake. Our love for baking is matched only by our
+                                commitment to our community.
+                            </p>
+                        </div>
+
+                        <div class="p-8 rounded-xl border-t-4 shadow-xl h-full transition duration-300 hover:shadow-2xl"
+                            style="background-color: var(--bg); border-color: var(--muted);">
+                            <h4 class="text-3xl font-serif font-bold mb-3" style="color: var(--text);">
+                                Peanut/Nut-Free Peace of Mind.
+                            </h4>
+                            <p style="color: var(--muted);" class="text-lg">
+                                We operate a dedicated peanut/nut-free kitchen. This is our promise to you, ensuring
+                                that everyone can enjoy our treats worry-free. Safety and deliciousness go hand-in-hand
+                                in every order we fulfill.
+                            </p>
+                        </div>
+
+                        <div class="pt-4">
+                            <a href="#safety"
+                                class="inline-flex items-center font-bold text-lg transition hover:underline"
+                                style="color: var(--text);">
+                                Read Our Full Safety Commitment
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" class="w-5 h-5 ml-2" style="color: var(--text);">
+                                    <path d="M5 12h14"></path>
+                                    <path d="m12 5 7 7-7 7"></path>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SAFETY -->
+        <section id="safety" class="fade-in-section py-16 md:py-24 text-center" style="background-color: var(--bg);">
+            <div class="container mx-auto px-4">
+                <div class="p-10 rounded-xl shadow-2xl max-w-5xl mx-auto" style="background-color: var(--card);">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="w-12 h-12 mx-auto mb-4" style="color: var(--text);">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"></path>
+                        <path d="m9 12 2 2 4-4"></path>
+                    </svg>
+                    <h3 class="text-4xl font-bold font-serif mb-4" style="color: var(--text);">Our Allergen Safety
+                        Promise</h3>
+                    <p class="text-xl font-semibold" style="color: var(--muted); max-width: 64rem; margin: 0 auto;">
+                        We maintain a dedicated Peanut/Nut-Free environment. This is not a preference; it is our
+                        foundation.
+                    </p>
+                    <div class="grid md:grid-cols-3 gap-6 mt-8" style="color: var(--muted);">
+                        <div class="p-4 rounded-lg border-2 border-dashed card-border"
+                            style="background-color: var(--bg);">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="w-6 h-6 mx-auto mb-2" style="color: var(--muted);">
+                                <path d="M2 22 17 7"></path>
+                                <path d="M12.924 10.316 15 12.5l-.25.5-2.076-2.184Z"></path>
+                                <path d="M7 2c.8 1.5 2 2 2.5 3s.5 2 0 3-1 1.5-2.5 3"></path>
+                            </svg>
+                            <p class="font-bold" style="color: var(--text);">Sourcing</p>
+                            <p class="text-sm" style="color: var(--muted);">Ingredients are sourced from certified
+                                nut-free suppliers.</p>
+                        </div>
+
+                        <div class="p-4 rounded-lg border-2 border-dashed card-border"
+                            style="background-color: var(--bg);">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="w-6 h-6 mx-auto mb-2" style="color: var(--muted);">
+                                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="9" cy="7" r="4"></circle>
+                            </svg>
+                            <p class="font-bold" style="color: var(--text);">Handling</p>
+                            <p class="text-sm" style="color: var(--muted);">Zero tolerance for nuts/peanuts in the
+                                kitchen premises.</p>
+                        </div>
+
+                        <div class="p-4 rounded-lg border-2 border-dashed card-border"
+                            style="background-color: var(--bg);">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="w-6 h-6 mx-auto mb-2" style="color: var(--muted);">
+                                <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                            </svg>
+                            <p class="font-bold" style="color: var(--text);">Cleaning</p>
+                            <p class="text-sm" style="color: var(--muted);">Rigorous, multi-step sanitization protocols
+                                daily.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- OFFERINGS -->
+        <section id="offerings" class="fade-in-section py-16 md:py-24">
+            <div class="container mx-auto px-4">
+                <h3 class="text-5xl font-serif font-bold text-center mb-12" style="color: var(--text);">Our Handcrafted
+                    Menu</h3>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Repeatable card -->
+                    <div class="p-8 rounded-xl shadow-lg transition duration-300 border border-gray-300 transform hover:scale-[1.02] cursor-pointer text-center"
+                        style="background-color: var(--card); border-bottom: 4px solid var(--muted);">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="w-10 h-10 mx-auto mb-3" style="color: var(--muted);">
+                            <path d="m14 17-6-6 6-6 6 6v10c0 1-1 2-2 2h-2"></path>
+                        </svg>
+                        <h4 class="text-2xl font-serif font-bold mb-2" style="color: var(--text);">Custom Cakes</h4>
+                        <p style="color: var(--muted);">The star of your celebration—beautifully designed and flavored
+                            to your specifications.</p>
+                    </div>
+
+                    <div class="p-8 rounded-xl shadow-lg transition duration-300 border border-gray-300 transform hover:scale-[1.02] cursor-pointer text-center"
+                        style="background-color: var(--card); border-bottom: 4px solid var(--muted);">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="w-10 h-10 mx-auto mb-3" style="color: var(--muted);">
+                            <circle cx="12" cy="12" r="10"></circle>
+                        </svg>
+                        <h4 class="text-2xl font-serif font-bold mb-2" style="color: var(--text);">Cheesecake Dreams
+                        </h4>
+                        <p style="color: var(--muted);">Rich, dense, and creamy classics or unique seasonal flavors.</p>
+                    </div>
+
+                    <div class="p-8 rounded-xl shadow-lg transition duration-300 border border-gray-300 transform hover:scale-[1.02] cursor-pointer text-center"
+                        style="background-color: var(--card); border-bottom: 4px solid var(--muted);">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="w-10 h-10 mx-auto mb-3" style="color: var(--muted);">
+                            <path d="M22.95 10.33a10 10 0 1 1-2.6-7.85"></path>
+                        </svg>
+                        <h4 class="text-2xl font-serif font-bold mb-2" style="color: var(--text);">Artisan Cookies</h4>
+                        <p style="color: var(--muted);">Soft, chewy, and perfect for party favors or a delicious snack.
+                        </p>
+                    </div>
+
+                    <!-- More cards follow same pattern -->
+                </div>
+            </div>
+        </section>
+
+        <!-- GALLERY -->
+        <section id="gallery" class="fade-in-section py-16 md:py-24" style="background-color: var(--card);">
+            <div class="container mx-auto px-4">
+                <h3 class="text-5xl font-serif font-bold text-center mb-12" style="color: var(--text);">A Taste of Our
+                    Craftsmanship</h3>
+
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 md:gap-6">
+                    <div
+                        class="rounded-xl overflow-hidden shadow-xl group relative cursor-pointer transition duration-500 hover:shadow-2xl aspect-square">
+                        <img src="Images/Red Velvet.jpg" alt="Red Velvet Cake"
+                            class="w-full h-full object-cover transition duration-500 group-hover:scale-105"
+                            onerror="this.onerror=null;this.src='https://placehold.co/400x400/f5f5f5/1f1f1f?text=Placeholder'" />
+                        <div
+                            class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
+                            <p class="text-white font-bold text-xl border-2 p-3 rounded-lg"
+                                style="border-color: var(--muted);">
+                                Red Velvet Cake</p>
+                        </div>
+                    </div>
+                    <div
+                        class="rounded-xl overflow-hidden shadow-xl group relative cursor-pointer transition duration-500 hover:shadow-2xl hover:shadow-red-300 aspect-square">
+                        <img src="Images/Floral .jpg" alt="Custom Floral Cake"
+                            class="w-full h-full object-cover transition duration-500 group-hover:scale-105"
+                            onerror="this.onerror=null;this.src='https://placehold.co/400x400/f5f5f5/1f1f1f?text=Placeholder'" />
+                        <div
+                            class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
+                            <p class="text-white font-bold text-xl border-2 p-3 rounded-lg"
+                                style="border-color: var(--muted);">
+                                Custom Floral</p>
+                        </div>
+                    </div>
+                    <div
+                        class="rounded-xl overflow-hidden shadow-xl group relative cursor-pointer transition duration-500 hover:shadow-2xl hover:shadow-red-300 aspect-square">
+                        <img src="Images/4.jpg" alt="Baby Shower Cookies"
+                            class="w-full h-full object-cover transition duration-500 group-hover:scale-105"
+                            onerror="this.onerror=null;this.src='https://placehold.co/400x400/f5f5f5/1f1f1f?text=Placeholder'" />
+                        <div
+                            class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
+                            <p class="text-white font-bold text-xl border-2 p-3 rounded-lg"
+                                style="border-color: var(--muted);">
+                                Baby Shower Cookies</p>
+                        </div>
+                    </div>
+                    <div
+                        class="rounded-xl overflow-hidden shadow-xl group relative cursor-pointer transition duration-500 hover:shadow-2xl hover:shadow-red-300 aspect-square">
+                        <img src="Images/5.jpg" alt="Cheesecake Trio"
+                            class="w-full h-full object-cover transition duration-500 group-hover:scale-105"
+                            onerror="this.onerror=null;this.src='https://placehold.co/400x400/f5f5f5/1f1f1f?text=Placeholder'" />
+                        <div
+                            class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
+                            <p class="text-white font-bold text-xl border-2 p-3 rounded-lg"
+                                style="border-color: var(--muted);">
+                                Cheesecake Trio</p>
+                        </div>
+                    </div>
+                    <div
+                        class="rounded-xl overflow-hidden shadow-xl group relative cursor-pointer transition duration-500 hover:shadow-2xl hover:shadow-red-300 aspect-square">
+                        <img src="Images/6.jpg" alt="Dessert Table"
+                            class="w-full h-full object-cover transition duration-500 group-hover:scale-105"
+                            onerror="this.onerror=null;this.src='https://placehold.co/400x400/f5f5f5/1f1f1f?text=Placeholder'" />
+                        <div
+                            class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
+                            <p class="text-white font-bold text-xl border-2 p-3 rounded-lg"
+                                style="border-color: var(--muted);">
+                                Dessert Table</p>
+                        </div>
+                    </div>
+                    <div
+                        class="rounded-xl overflow-hidden shadow-xl group relative cursor-pointer transition duration-500 hover:shadow-2xl hover:shadow-red-300 aspect-square">
+                        <img src="Images/7.jpeg" alt="Kids Birthday Cake"
+                            class="w-full h-full object-cover transition duration-500 group-hover:scale-105"
+                            onerror="this.onerror=null;this.src='https://placehold.co/400x400/f5f5f5/1f1f1f?text=Placeholder'" />
+                        <div
+                            class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
+                            <p class="text-white font-bold text-xl border-2 p-3 rounded-lg"
+                                style="border-color: var(--muted);">
+                                Kids Birthday</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT -->
+        <section id="contact" class="fade-in-section py-16 md:py-24 text-center" style="background-color: var(--bg);">
+            <div class="container mx-auto px-4">
+                <div class="p-10 rounded-xl max-w-3xl mx-auto shadow-2xl"
+                    style="background-color: var(--card); border-top: 4px solid var(--muted);">
+                    <h3 class="text-4xl font-serif font-bold mb-6" style="color: var(--text);">Start Your Custom Order
+                    </h3>
+                    <p class="text-xl" style="color: var(--muted); margin-bottom: 1rem;">
+                        Since all treats are custom and baked fresh, please reach out with your event details, desired
+                        flavors, and any allergy concerns. We look forward to creating magic for you!
+                    </p>
+                    <a href="mailto:dionsmummy2714@gmail.com"
+                        class="inline-flex items-center px-10 py-4 font-bold text-lg rounded-full shadow-lg transition transform hover:scale-105"
+                        style="background-color: var(--text); color: var(--bg);">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="w-6 h-6 mr-2" style="color: var(--bg);">
+                            <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                        </svg>
+                        Email Us for a Quote
+                    </a>
+                    <p class="text-sm mt-6" style="color: var(--muted);">Serving the Peel Region. Please allow 48 hours
+                        for a response to inquiries.</p>
+                </div>
+                <div id="auth-status" class="mt-8 text-sm" style="color: var(--muted);">Initializing authentication...
+                </div>
+                <div id="user-id-display" class="mt-2 text-xs hidden" style="color: var(--muted);">User ID: <span
+                        id="user-id-value"></span></div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="py-8 text-center" style="background-color: var(--card);">
+        <p class="mb-4" style="color: var(--muted);">&copy; <span id="current-year"></span> Yummy! By Dions Mummy.</p>
+        <p class="mb-4">
+            <span class="font-serif italic" style="color: var(--muted);">"The secret ingredient is always a mother's
+                love."</span>
+        </p>
+        <a href="https://www.instagram.com/yummy_bydionsmummy/" target="_blank" class="hover:opacity-90 transition mx-2"
+            style="color: var(--muted);" aria-label="Instagram">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="w-6 h-6 inline-block" style="color: var(--muted);">
+                <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line>
+            </svg>
+        </a>
+    </footer>
+
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import {
+            getAuth,
+            signInAnonymously,
+            signInWithCustomToken,
+            onAuthStateChanged,
+            setPersistence,
+            browserLocalPersistence
+        } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, setLogLevel } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        let auth;
+        let db;
+        let userId = null;
+
+        const header = document.getElementById('main-header');
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+        const xIcon = document.getElementById('x-icon');
+        const authStatusEl = document.getElementById('auth-status');
+        const userIdDisplayEl = document.getElementById('user-id-display');
+        const userIdValueEl = document.getElementById('user-id-value');
+
+        const initFirebase = async () => {
+            setLogLevel('Debug');
+
+            const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
+            const firebaseConfig = JSON.parse(typeof __firebase_config !== 'undefined' ? __firebase_config : '{}');
+            const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
+
+            if (Object.keys(firebaseConfig).length === 0) {
+                updateAuthStatus("Authentication Error: Firebase config missing.");
+                console.error("Firebase config is empty. Cannot initialize.");
+                return;
+            }
+
+            try {
+                const app = initializeApp(firebaseConfig);
+                db = getFirestore(app);
+                auth = getAuth(app);
+
+                await setPersistence(auth, browserLocalPersistence);
+
+                onAuthStateChanged(auth, (user) => {
+                    if (user) {
+                        updateAuthStatus("Authenticated successfully.");
+                        userId = user.uid;
+                        userIdValueEl.textContent = userId;
+                        userIdDisplayEl.classList.remove('hidden');
+                    } else {
+                        updateAuthStatus("Awaiting authentication...");
+                        userId = null;
+                        userIdDisplayEl.classList.add('hidden');
+                    }
+                });
+
+                if (initialAuthToken) {
+                    await signInWithCustomToken(auth, initialAuthToken)
+                        .then(() => console.log("Signed in with custom token."))
+                        .catch(error => {
+                            console.error("Custom token sign-in failed:", error);
+                            signInAnonymously(auth);
+                        });
+                } else {
+                    await signInAnonymously(auth)
+                        .then(() => console.log("Signed in anonymously."))
+                        .catch(error => console.error("Anonymous sign-in failed:", error));
+                }
+            } catch (error) {
+                console.error("Firebase Initialization Failed:", error);
+                updateAuthStatus(`Authentication Failed: ${error.message}`);
+            }
+        };
+
+        const updateAuthStatus = (status) => { authStatusEl.textContent = status; };
+
+        const handleScroll = () => {
+            if (window.scrollY > 50) {
+                header.classList.add('header-scrolled');
+            } else {
+                header.classList.remove('header-scrolled');
+            }
+        };
+
+        const toggleMenu = () => {
+            const isMenuOpen = mobileMenu.classList.contains('hidden');
+            if (isMenuOpen) {
+                mobileMenu.classList.remove('hidden');
+                menuIcon.classList.add('hidden');
+                xIcon.classList.remove('hidden');
+            } else {
+                mobileMenu.classList.add('hidden');
+                menuIcon.classList.remove('hidden');
+                xIcon.classList.add('hidden');
+            }
+        };
+
+        const closeMenu = () => {
+            mobileMenu.classList.add('hidden');
+            menuIcon.classList.remove('hidden');
+            xIcon.classList.add('hidden');
+        };
+
+        const setupFadeInSections = () => {
+            const sections = document.querySelectorAll('.fade-in-section');
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) { entry.target.classList.add('is-visible'); observer.unobserve(entry.target); }
+                });
+            }, { rootMargin: '0px 0px -50px 0px', threshold: 0.1 });
+
+            sections.forEach(section => { observer.observe(section); });
+        };
+
+        window.onload = () => {
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+            window.addEventListener('scroll', handleScroll);
+            menuToggle.addEventListener('click', toggleMenu);
+            document.querySelectorAll('.mobile-link').forEach(link => { link.addEventListener('click', closeMenu); });
+            setupFadeInSections();
+            initFirebase();
+            handleScroll();
+        };
+
+    </script>
+</body>
+
+</html>
