@@ -84,6 +84,7 @@
                 <h1 class="text-3xl font-serif font-bold tracking-tight" style="color: var(--text);">Yummy!</h1>
                 <p class="text-xs font-light tracking-widest uppercase" style="color: var(--muted);">By Dion's Mummy</p>
             </div>
+            <!-- Desktop Navigation: hidden on screens smaller than 'md' -->
             <nav class="hidden md:flex space-x-8 font-medium">
                 <a href="#featured" class="hover:text-gray-900 transition duration-300"
                     style="color: var(--muted);">Home</a>
@@ -96,6 +97,7 @@
                 <a href="#contact" class="hover:text-gray-900 transition duration-300"
                     style="color: var(--muted);">Order Now</a>
             </nav>
+            <!-- Hamburger Menu Toggle: visible on screens smaller than 'md' -->
             <button id="menu-toggle" class="md:hidden p-2 rounded-lg transition" aria-label="Toggle menu">
                 <svg id="menu-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -112,7 +114,8 @@
                 </svg>
             </button>
         </div>
-        <div id="mobile-menu" class="md:hidden mt-4 space-y-2 text-center rounded-lg shadow-inner hidden"
+        <!-- Mobile Menu Panel: hidden by default, toggled by JS on mobile -->
+        <div id="mobile-menu" class="md:hidden mt-4 space-y-2 text-center rounded-lg shadow-inner hidden w-full px-4"
             style="background-color: var(--card);">
             <a href="#featured" class="block py-3 font-medium hover:bg-black/10 rounded-md transition mobile-link"
                 style="color: var(--text);">Home</a>
@@ -143,15 +146,18 @@
             </div>
 
             <div class="container mx-auto px-4 relative z-10 text-center">
-                <p class="text-xl md:text-2xl font-serif italic block mb-4 text-white"
+                <!-- Responsive Typography: scales from base text-lg up to 2xl -->
+                <p class="text-lg sm:text-xl md:text-2xl font-serif italic block mb-4 text-white"
                     style="text-shadow: 1px 1px 2px rgba(0,0,0,0.8);">
                     The Secret Ingredient Is Always a Mother's Love
                 </p>
-                <h2 class="text-6xl sm:text-7xl md:text-8xl font-black font-serif leading-none tracking-tighter drop-shadow-lg text-white"
+                <!-- Responsive Typography: scales from base text-4xl up to 8xl -->
+                <h2 class="text-4xl sm:text-6xl md:text-8xl font-black font-serif leading-none tracking-tighter drop-shadow-lg text-white"
                     style="text-shadow: 1px 1px 4px rgba(0,0,0,0.9);">
                     Artisan & Nut-Free Baking
                 </h2>
-                <p class="text-lg md:text-xl font-medium max-w-4xl mx-auto mt-6 mb-8 text-white"
+                <!-- Responsive Typography: scales from base text-base up to xl -->
+                <p class="text-base sm:text-lg md:text-xl font-medium max-w-4xl mx-auto mt-6 mb-8 text-white"
                     style="text-shadow: 1px 1px 2px rgba(0,0,0,0.8);">
                     Handcrafted delights for your family and friends in the Peel Region. We specialize in custom cakes,
                     decadent
@@ -177,8 +183,9 @@
         <section id="mission-vision-block" class="fade-in-section py-16 md:py-24"
             style="background-color: var(--card);">
             <div class="container mx-auto px-4">
-                <h3 class="text-5xl font-serif font-bold text-center mb-12" style="color: var(--text);">Our Artisan
-                    Journey</h3>
+                <!-- Responsive Typography: scales from base text-4xl up to 5xl -->
+                <h3 class="text-4xl sm:text-5xl font-serif font-bold text-center mb-12" style="color: var(--text);">Our
+                    Artisan Journey</h3>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
 
@@ -242,13 +249,16 @@
                         <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"></path>
                         <path d="m9 12 2 2 4-4"></path>
                     </svg>
-                    <h3 class="text-4xl font-bold font-serif mb-4" style="color: var(--text);">Our Allergen Safety
-                        Promise</h3>
-                    <p class="text-xl font-semibold" style="color: var(--muted); max-width: 64rem; margin: 0 auto;">
+                    <!-- Responsive Typography: scales from base text-3xl up to 4xl -->
+                    <h3 class="text-3xl sm:text-4xl font-bold font-serif mb-4" style="color: var(--text);">Our Allergen
+                        Safety Promise</h3>
+                    <!-- Responsive Typography: scales from base text-lg up to xl -->
+                    <p class="text-lg sm:text-xl font-semibold"
+                        style="color: var(--muted); max-width: 64rem; margin: 0 auto;">
                         We maintain a dedicated Peanut/Nut-Free environment. This is not a preference; it is our
                         foundation.
                     </p>
-                    <div class="grid md:grid-cols-3 gap-6 mt-8" style="color: var(--muted);">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mt-8" style="color: var(--muted);">
                         <div class="p-4 rounded-lg border-2 border-dashed card-border"
                             style="background-color: var(--bg);">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -296,8 +306,9 @@
         <!-- OFFERINGS -->
         <section id="offerings" class="fade-in-section py-16 md:py-24">
             <div class="container mx-auto px-4">
-                <h3 class="text-5xl font-serif font-bold text-center mb-12" style="color: var(--text);">Our Handcrafted
-                    Menu</h3>
+                <!-- Responsive Typography: scales from base text-4xl up to 5xl -->
+                <h3 class="text-4xl sm:text-5xl font-serif font-bold text-center mb-12" style="color: var(--text);">Our
+                    Handcrafted Menu</h3>
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                     <!-- Repeatable card -->
@@ -345,7 +356,9 @@
         <!-- GALLERY -->
         <section id="gallery" class="fade-in-section py-16 md:py-24" style="background-color: var(--card);">
             <div class="container mx-auto px-4">
-                <h3 class="text-5xl font-serif font-bold text-center mb-12" style="color: var(--text);">A Taste of Our
+                <!-- Responsive Typography: scales from base text-4xl up to 5xl -->
+                <h3 class="text-4xl sm:text-5xl font-serif font-bold text-center mb-12" style="color: var(--text);">A
+                    Taste of Our
                     Craftsmanship</h3>
 
                 <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 md:gap-6">
@@ -598,6 +611,7 @@
             document.getElementById('current-year').textContent = new Date().getFullYear();
             window.addEventListener('scroll', handleScroll);
             menuToggle.addEventListener('click', toggleMenu);
+            // This ensures the menu closes when a link is tapped on mobile
             document.querySelectorAll('.mobile-link').forEach(link => { link.addEventListener('click', closeMenu); });
             setupFadeInSections();
             initFirebase();
