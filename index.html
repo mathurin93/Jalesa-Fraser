@@ -27,6 +27,7 @@
             /* secondary text / borders (medium gray) */
             --glass: rgba(0, 0, 0, 0.04);
             /* subtle glassy overlay (transparent black) */
+            --accent-soft: #e5e7eb;
         }
 
         .font-serif {
@@ -73,12 +74,68 @@
         .card-border {
             border-color: var(--muted) !important;
         }
+
+        /* Native Details/Summary Styling */
+        details>summary {
+            list-style: none;
+        }
+
+        details>summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .chevron-icon {
+            transition: transform 0.3s ease;
+        }
+
+        details[open] .chevron-icon {
+            transform: rotate(180deg);
+        }
+
+        /* Smooth animation for content entry */
+        details[open] .accordion-inner {
+            animation: slideFadeIn 0.3s ease-out forwards;
+        }
+
+        @keyframes slideFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Chip/Tag Styles */
+        .menu-chip {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.5rem 1rem;
+            background-color: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--text);
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+            transition: all 0.2s;
+            cursor: default;
+        }
+
+        .menu-chip:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            background-color: #fafafa;
+        }
     </style>
 </head>
 
 <body class="font-sans">
 
-    <header id="main-header" class="sticky top-0 z-50 p-4 transition-all duration-300 bg-transparent">
+    <header id="main-header" class="relative p-4 transition-all duration-300 bg-transparent">
         <div class="container mx-auto flex justify-between items-center" style="color: var(--text);">
             <div>
                 <h1 class="text-3xl font-serif font-bold tracking-tight" style="color: var(--text);">Yummy!</h1>
@@ -303,52 +360,210 @@
             </div>
         </section>
 
-        <!-- OFFERINGS -->
-        <section id="offerings" class="fade-in-section py-16 md:py-24">
+        <!-- OFFERINGS / MENU (Native Details/Summary) -->
+        <section id="offerings" class="fade-in-section py-16 md:py-24" style="background-color: #f8fafc;">
             <div class="container mx-auto px-4">
-                <!-- Responsive Typography: scales from base text-4xl up to 5xl -->
-                <h3 class="text-4xl sm:text-5xl font-serif font-bold text-center mb-12" style="color: var(--text);">Our
-                    Handcrafted Menu</h3>
+                <div class="text-center mb-16">
+                    <h3 class="text-4xl sm:text-5xl font-serif font-bold mb-4" style="color: var(--text);">
+                        Our Menu
+                    </h3>
+                    <p class="text-lg max-w-2xl mx-auto" style="color: var(--muted);">
+                        Handcrafted with love and safe ingredients. Click on a category to explore our flavors.
+                    </p>
+                </div>
 
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- Repeatable card -->
-                    <div class="p-8 rounded-xl shadow-lg transition duration-300 border border-gray-300 transform hover:scale-[1.02] cursor-pointer text-center"
-                        style="background-color: var(--card); border-bottom: 4px solid var(--muted);">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                            class="w-10 h-10 mx-auto mb-3" style="color: var(--muted);">
-                            <path d="m14 17-6-6 6-6 6 6v10c0 1-1 2-2 2h-2"></path>
-                        </svg>
-                        <h4 class="text-2xl font-serif font-bold mb-2" style="color: var(--text);">Custom Cakes</h4>
-                        <p style="color: var(--muted);">The star of your celebration—beautifully designed and flavored
-                            to your specifications.</p>
-                    </div>
+                <!-- Grid Layout -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 max-w-6xl mx-auto">
 
-                    <div class="p-8 rounded-xl shadow-lg transition duration-300 border border-gray-300 transform hover:scale-[1.02] cursor-pointer text-center"
-                        style="background-color: var(--card); border-bottom: 4px solid var(--muted);">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                            class="w-10 h-10 mx-auto mb-3" style="color: var(--muted);">
-                            <circle cx="12" cy="12" r="10"></circle>
-                        </svg>
-                        <h4 class="text-2xl font-serif font-bold mb-2" style="color: var(--text);">Cheesecake Dreams
-                        </h4>
-                        <p style="color: var(--muted);">Rich, dense, and creamy classics or unique seasonal flavors.</p>
-                    </div>
+                    <!-- 1. Custom Cakes -->
+                    <details
+                        class="bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow duration-300 border border-gray-100 overflow-hidden h-fit group">
+                        <summary
+                            class="w-full flex justify-between items-center p-6 text-left focus:outline-none hover:bg-gray-50 transition-colors duration-200 cursor-pointer">
+                            <h4 class="text-xl font-serif font-bold" style="color: var(--text);">Custom Cakes</h4>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="chevron-icon w-5 h-5 text-gray-400">
+                                <path d="m6 9 6 6 6-6"></path>
+                            </svg>
+                        </summary>
+                        <div class="accordion-inner px-6 pb-8 pt-2 border-t border-gray-50">
+                            <div class="space-y-3">
+                                <div
+                                    class="flex justify-between items-center p-3 rounded-lg bg-gray-50 border border-gray-100">
+                                    <span class="font-medium text-gray-700">6 inch</span>
+                                    <span class="font-bold text-gray-900">From $50.00</span>
+                                </div>
+                                <div
+                                    class="flex justify-between items-center p-3 rounded-lg bg-gray-50 border border-gray-100">
+                                    <span class="font-medium text-gray-700">8 inch</span>
+                                    <span class="font-bold text-gray-900">From $75.00</span>
+                                </div>
+                                <div
+                                    class="flex justify-between items-center p-3 rounded-lg bg-gray-50 border border-gray-100">
+                                    <span class="font-medium text-gray-700">10 inch</span>
+                                    <span class="font-bold text-gray-900">From $100.00</span>
+                                </div>
+                                <div
+                                    class="flex justify-between items-center p-3 rounded-lg bg-gray-50 border border-gray-100">
+                                    <span class="font-medium text-gray-700">12 inch</span>
+                                    <span class="font-bold text-gray-900">From $130.00</span>
+                                </div>
+                            </div>
+                            <p class="text-xs text-gray-500 mt-4 leading-relaxed italic">
+                                * Additional designs, layers, and tiers subject to extra costs.
+                            </p>
+                        </div>
+                    </details>
 
-                    <div class="p-8 rounded-xl shadow-lg transition duration-300 border border-gray-300 transform hover:scale-[1.02] cursor-pointer text-center"
-                        style="background-color: var(--card); border-bottom: 4px solid var(--muted);">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                            class="w-10 h-10 mx-auto mb-3" style="color: var(--muted);">
-                            <path d="M22.95 10.33a10 10 0 1 1-2.6-7.85"></path>
-                        </svg>
-                        <h4 class="text-2xl font-serif font-bold mb-2" style="color: var(--text);">Artisan Cookies</h4>
-                        <p style="color: var(--muted);">Soft, chewy, and perfect for party favors or a delicious snack.
-                        </p>
-                    </div>
+                    <!-- 2. Cheesecakes -->
+                    <details
+                        class="bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow duration-300 border border-gray-100 overflow-hidden h-fit group">
+                        <summary
+                            class="w-full flex justify-between items-center p-6 text-left focus:outline-none hover:bg-gray-50 transition-colors duration-200 cursor-pointer">
+                            <h4 class="text-xl font-serif font-bold" style="color: var(--text);">Cheesecakes & Shooters
+                            </h4>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="chevron-icon w-5 h-5 text-gray-400">
+                                <path d="m6 9 6 6 6-6"></path>
+                            </svg>
+                        </summary>
+                        <div class="accordion-inner px-6 pb-8 pt-2 border-t border-gray-50">
+                            <div class="flex flex-wrap gap-2">
+                                <span class="menu-chip">Cherry</span>
+                                <span class="menu-chip">Strawberry</span>
+                                <span class="menu-chip">Baileys Original</span>
+                                <span class="menu-chip">Baileys Chocolate</span>
+                                <span class="menu-chip">Apple Crumble</span>
+                                <span class="menu-chip">Cookies & Cream</span>
+                                <span class="menu-chip">Churro</span>
+                                <span class="menu-chip">Very Berry</span>
+                                <span class="menu-chip">Lemon</span>
+                                <span class="menu-chip">Red Velvet</span>
+                                <span class="menu-chip">Caramel</span>
+                                <span class="menu-chip">Blueberry</span>
+                                <span class="menu-chip">White Choc Raspberry</span>
+                            </div>
+                        </div>
+                    </details>
 
-                    <!-- More cards follow same pattern -->
+                    <!-- 3. Cookies -->
+                    <details
+                        class="bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow duration-300 border border-gray-100 overflow-hidden h-fit group">
+                        <summary
+                            class="w-full flex justify-between items-center p-6 text-left focus:outline-none hover:bg-gray-50 transition-colors duration-200 cursor-pointer">
+                            <h4 class="text-xl font-serif font-bold" style="color: var(--text);">Artisan Cookies</h4>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="chevron-icon w-5 h-5 text-gray-400">
+                                <path d="m6 9 6 6 6-6"></path>
+                            </svg>
+                        </summary>
+                        <div class="accordion-inner px-6 pb-8 pt-2 border-t border-gray-50">
+                            <div class="flex flex-wrap gap-2">
+                                <span class="menu-chip">Chocolate Chip</span>
+                                <span class="menu-chip">Double Choc Chip</span>
+                                <span class="menu-chip">Cookies & Cream</span>
+                                <span class="menu-chip">Red Velvet</span>
+                                <span class="menu-chip">White Chocolate</span>
+                                <span class="menu-chip">White Choc Confetti</span>
+                                <span class="menu-chip">Cinnamon Toast</span>
+                                <span class="menu-chip">Oatmeal Raisin</span>
+                                <span class="menu-chip">Sugar</span>
+                                <span class="menu-chip">Shortbread</span>
+                                <span class="menu-chip">Salted Caramel</span>
+                                <span class="menu-chip">Churro</span>
+                                <span class="menu-chip">Strawberry Cheesecake</span>
+                                <span class="menu-chip">Cookie Monster</span>
+                            </div>
+                        </div>
+                    </details>
+
+                    <!-- 4. Cinnamon Rolls -->
+                    <details
+                        class="bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow duration-300 border border-gray-100 overflow-hidden h-fit group">
+                        <summary
+                            class="w-full flex justify-between items-center p-6 text-left focus:outline-none hover:bg-gray-50 transition-colors duration-200 cursor-pointer">
+                            <h4 class="text-xl font-serif font-bold" style="color: var(--text);">Cinnamon Rolls</h4>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="chevron-icon w-5 h-5 text-gray-400">
+                                <path d="m6 9 6 6 6-6"></path>
+                            </svg>
+                        </summary>
+                        <div class="accordion-inner px-6 pb-8 pt-2 border-t border-gray-50">
+                            <div class="flex flex-wrap gap-2">
+                                <span class="menu-chip">Original</span>
+                                <span class="menu-chip">Cookies & Cream</span>
+                                <span class="menu-chip">Strawberry Crumble</span>
+                                <span class="menu-chip">Red Velvet</span>
+                            </div>
+                        </div>
+                    </details>
+
+                    <!-- 5. Cake Pops -->
+                    <details
+                        class="bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow duration-300 border border-gray-100 overflow-hidden h-fit group">
+                        <summary
+                            class="w-full flex justify-between items-center p-6 text-left focus:outline-none hover:bg-gray-50 transition-colors duration-200 cursor-pointer">
+                            <h4 class="text-xl font-serif font-bold" style="color: var(--text);">Cake Pops</h4>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="chevron-icon w-5 h-5 text-gray-400">
+                                <path d="m6 9 6 6 6-6"></path>
+                            </svg>
+                        </summary>
+                        <div class="accordion-inner px-6 pb-8 pt-2 border-t border-gray-50">
+                            <div class="flex flex-wrap gap-2">
+                                <span class="menu-chip">Vanilla</span>
+                                <span class="menu-chip">Chocolate</span>
+                                <span class="menu-chip">Red Velvet</span>
+                                <span class="menu-chip">Cookies & Cream</span>
+                                <span class="menu-chip">Lemon</span>
+                                <span class="menu-chip">Confetti</span>
+                            </div>
+                        </div>
+                    </details>
+
+                    <!-- 6. Cakes, Cupcakes & Cake Jars -->
+                    <details
+                        class="bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow duration-300 border border-gray-100 overflow-hidden h-fit group">
+                        <summary
+                            class="w-full flex justify-between items-center p-6 text-left focus:outline-none hover:bg-gray-50 transition-colors duration-200 cursor-pointer">
+                            <h4 class="text-xl font-serif font-bold" style="color: var(--text);">Cupcakes & Jars</h4>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="chevron-icon w-5 h-5 text-gray-400">
+                                <path d="m6 9 6 6 6-6"></path>
+                            </svg>
+                        </summary>
+                        <div class="accordion-inner px-6 pb-8 pt-2 border-t border-gray-50">
+                            <div class="flex flex-wrap gap-2">
+                                <span class="menu-chip">Vanilla</span>
+                                <span class="menu-chip">Chocolate</span>
+                                <span class="menu-chip">Red Velvet</span>
+                                <span class="menu-chip">Cookies & Cream</span>
+                                <span class="menu-chip">Lemon</span>
+                                <span class="menu-chip">Confetti</span>
+                                <span class="menu-chip">S'mores</span>
+                                <span class="menu-chip">Strawberry Shortcake</span>
+                                <span class="menu-chip">Apple Pie</span>
+                                <span class="menu-chip">Cookie Monster</span>
+                                <span class="menu-chip">Marble</span>
+                                <span class="menu-chip">Pina Colada</span>
+                                <span class="menu-chip">Strawberry Crumble</span>
+                                <span class="menu-chip">Black Forest</span>
+                                <span class="menu-chip">Strawberry Lemonade</span>
+                                <span class="menu-chip">Cinnamon Sugar</span>
+                                <span class="menu-chip">Vanilla Rum</span>
+                                <span class="menu-chip">Baileys Chocolate</span>
+                                <span class="menu-chip">Carrot</span>
+                                <span class="menu-chip">Double Chocolate</span>
+                            </div>
+                        </div>
+                    </details>
+
                 </div>
             </div>
         </section>
@@ -569,14 +784,6 @@
 
         const updateAuthStatus = (status) => { authStatusEl.textContent = status; };
 
-        const handleScroll = () => {
-            if (window.scrollY > 50) {
-                header.classList.add('header-scrolled');
-            } else {
-                header.classList.remove('header-scrolled');
-            }
-        };
-
         const toggleMenu = () => {
             const isMenuOpen = mobileMenu.classList.contains('hidden');
             if (isMenuOpen) {
@@ -609,13 +816,11 @@
 
         window.onload = () => {
             document.getElementById('current-year').textContent = new Date().getFullYear();
-            window.addEventListener('scroll', handleScroll);
             menuToggle.addEventListener('click', toggleMenu);
             // This ensures the menu closes when a link is tapped on mobile
             document.querySelectorAll('.mobile-link').forEach(link => { link.addEventListener('click', closeMenu); });
             setupFadeInSections();
             initFirebase();
-            handleScroll();
         };
 
     </script>
